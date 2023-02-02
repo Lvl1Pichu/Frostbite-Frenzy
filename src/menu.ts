@@ -1,4 +1,8 @@
-class Menu {
+interface IMenu {
+  openPage(page: MenuPage): void;
+}
+
+class Menu implements IMenu {
   private activePage: MenuPage;
 
   public constructor(firstPage: string, scores?: Scores) {
@@ -10,7 +14,7 @@ class Menu {
     if (firstPage === "gameover" && scores) {
       activePage = new Gameover(this, scores);
     } else {
-      activePage = new Gameover(this, {1: 1, 2: 2});
+      activePage = new StartPage(this);
     }
     return activePage;
   }
